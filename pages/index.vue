@@ -1,6 +1,5 @@
 <template>
-  <div class="container-fluid">
-    <h2>Pokemons</h2>
+  <div class="container-fluid p-0">
     <PokemonList />
   </div>
 </template>
