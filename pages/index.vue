@@ -1,36 +1,28 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <h2>Pokemons</h2>
-    <ul class="users">
-      <li v-for="pokemon in pokemons" :key="pokemon.name">
-        <NuxtLink :to="'/pokemons/' + pokemon.name">
-          {{ pokemon.name }}
-        </NuxtLink>
-        <img :src="pokemon.imageUrl" />
-      </li>
-    </ul>
+    <PokemonList />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import PokemonList from "@/components/PokemonList";
 
 export default {
   async asyncData({ store }) {
     const { data } = await axios.get(
-      "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0"
+      "https://pokeapi.co/api/v2/pokemon?limit=120"
     );
 
     await data.results.map(pokemon => {
       pokemon.id = pokemon.url.substring(34).slice(0, -1);
-      pokemon.imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url
+      pokemon.imageUrl = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.url
         .substring(34)
         .slice(0, -1)}.png `;
     });
 
     await store.dispatch("pokemon/all", data.results);
-
-    return { pokemons: store.state.pokemon.pokemons };
   }
 };
 </script>

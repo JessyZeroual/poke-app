@@ -8,7 +8,6 @@ export const mutations = {
 
 export const actions = {
   all({ commit }, pokemons) {
-    console.log(123);
-    commit('SET_POKEMON', pokemons);
+    commit("SET_POKEMON", pokemons);
   }
 };
