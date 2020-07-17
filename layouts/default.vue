@@ -14,6 +14,6 @@ export default {
 
 <style>
 .marginTop {
-  margin-top: 100px;
+  margin-top: 70px;
 }
 </style>
